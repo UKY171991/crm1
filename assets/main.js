@@ -79,14 +79,15 @@ window.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.action-btn[title="History"]').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      modal.style.display = 'flex';
+      e.stopPropagation();
+      if (modal) modal.style.display = 'flex';
     });
   });
   // Close modal on close button or overlay click
-  closeBtn.addEventListener('click', function() {
+  if (closeBtn) closeBtn.addEventListener('click', function() {
     modal.style.display = 'none';
   });
-  modal.addEventListener('click', function(e) {
+  if (modal) modal.addEventListener('click', function(e) {
     if (e.target === modal) modal.style.display = 'none';
   });
 });

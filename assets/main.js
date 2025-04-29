@@ -71,4 +71,22 @@ window.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+
+  // Modal logic for audit trail
+  var modal = document.getElementById('auditModal');
+  var closeBtn = document.getElementById('closeAuditModal');
+  // Open modal on any History (clock) button
+  document.querySelectorAll('.action-btn[title="History"]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+  });
+  // Close modal on close button or overlay click
+  closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) modal.style.display = 'none';
+  });
 });

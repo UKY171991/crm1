@@ -95,6 +95,45 @@
     </div>
   </div>
 </div>
+<div id="auditModal" class="modal-overlay" style="display:none;">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Audit Trail - Excavator XC-2000</div>
+      <button class="modal-close" id="closeAuditModal" title="Close">&times;</button>
+    </div>
+    <div class="modal-subtitle">View the history of changes made to this asset.</div>
+    <table class="modal-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Action</th>
+          <th>User</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025-04-29 11:34</td>
+          <td><span class="badge badge-active">Created</span></td>
+          <td>John Smith</td>
+          <td>Asset created</td>
+        </tr>
+        <tr>
+          <td>2025-04-26 11:34</td>
+          <td><span class="badge badge-maintenance">Updated</span></td>
+          <td>Sarah Johnson</td>
+          <td>Status changed from 'idle' to 'active'</td>
+        </tr>
+        <tr>
+          <td>2025-04-23 11:34</td>
+          <td><span class="badge badge-maintenance">Updated</span></td>
+          <td>Michael Brown</td>
+          <td>Location updated from 'Site A' to 'Site B'</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <?php include 'inc/footer.php'; ?>
 </body>
 </html>

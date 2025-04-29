@@ -7,21 +7,34 @@ body {
 .sidebar {
   position: fixed;
   left: 0; top: 0; bottom: 0;
-  width: 240px;
+  width: 260px;
   background: #181c2a;
   color: #fff;
-  padding-top: 40px;
+  padding-top: 32px;
   display: flex;
   flex-direction: column;
   z-index: 100;
 }
 .sidebar-header {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+  padding: 0 32px 36px 32px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
   font-size: 2em;
+  margin-right: 4px;
+}
+.sidebar-title {
+  font-size: 1.25em;
   font-weight: 700;
   letter-spacing: 0.5px;
-  margin-bottom: 48px;
-  color: #fff;
 }
 .sidebar-menu {
   list-style: none;
@@ -30,24 +43,42 @@ body {
   flex: 1;
 }
 .sidebar-menu li {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .sidebar-link {
   color: #fff;
   text-decoration: none;
-  padding: 12px 32px;
-  display: block;
+  padding: 12px 32px 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
   border-radius: 0 24px 24px 0;
   font-size: 1.08em;
   font-weight: 500;
+  position: relative;
   transition: background 0.18s, color 0.18s;
 }
-.sidebar-link:hover, .sidebar-link.active {
+.sidebar-link.active, .sidebar-link:hover {
   background: #a78bfa;
   color: #181c2a;
 }
+.sidebar-link.active::before, .sidebar-link:hover::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 4px;
+  border-radius: 4px;
+  background: #6d28d9;
+}
+.sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
 .topbar {
-  margin-left: 240px;
+  margin-left: 260px;
   height: 64px;
   background: #fff;
   display: flex;
@@ -80,7 +111,7 @@ body {
   font-weight: bold;
 }
 .main-content {
-  margin-left: 240px;
+  margin-left: 260px;
   padding: 32px 40px 80px 40px;
 }
 .dashboard-cards {
@@ -153,7 +184,7 @@ body {
   margin-bottom: 12px;
 }
 .footer {
-  margin-left: 240px;
+  margin-left: 260px;
   background: #fff;
   padding: 18px 0;
   text-align: center;
@@ -161,6 +192,6 @@ body {
   font-size: 1em;
   position: fixed;
   bottom: 0;
-  width: calc(100% - 240px);
+  width: calc(100% - 260px);
   box-shadow: 0 -1px 4px rgba(0,0,0,0.04);
 }

@@ -7,7 +7,7 @@
     <span class="sidebar-title">Asset Compass</span>
   </div>
   <ul class="sidebar-menu">
-    <li><a href="index.php" class="sidebar-link<?php if(basename($_SERVER['PHP_SELF'])=='dashboard.php') echo ' active'; ?>"><span class="sidebar-icon"> 
+    <li><a href="index.php" class="sidebar-link<?php if(basename($_SERVER['PHP_SELF'])=='index.php') echo ' active'; ?>"><span class="sidebar-icon"> 
       <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h4v4H3zM3 7h4v4H3zM9 7h4v10H9zM15 11h4v6h-4z"/></svg>
     </span>Dashboard</a></li>
     <li><a href="assets.php" class="sidebar-link<?php if(basename($_SERVER['PHP_SELF'])=='assets.php') echo ' active'; ?>"><span class="sidebar-icon">

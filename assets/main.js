@@ -91,6 +91,27 @@ window.addEventListener('DOMContentLoaded', function() {
     if (e.target === modal) modal.style.display = 'none';
   });
 
+  // Add Asset modal logic
+  var addAssetModal = document.getElementById('addAssetModal');
+  var openAddAssetBtn = document.getElementById('openAddAssetModal');
+  var closeAddAssetBtn = document.getElementById('closeAddAssetModal');
+  if (openAddAssetBtn && addAssetModal) {
+    openAddAssetBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      addAssetModal.style.display = 'flex';
+    });
+  }
+  if (closeAddAssetBtn && addAssetModal) {
+    closeAddAssetBtn.addEventListener('click', function() {
+      addAssetModal.style.display = 'none';
+    });
+  }
+  if (addAssetModal) {
+    addAssetModal.addEventListener('click', function(e) {
+      if (e.target === addAssetModal) addAssetModal.style.display = 'none';
+    });
+  }
+
   // Action menu logic
   document.querySelectorAll('.more-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {

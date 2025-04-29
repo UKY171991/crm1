@@ -90,4 +90,30 @@ window.addEventListener('DOMContentLoaded', function() {
   if (modal) modal.addEventListener('click', function(e) {
     if (e.target === modal) modal.style.display = 'none';
   });
+
+  // Action menu logic
+  document.querySelectorAll('.more-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeAllActionMenus();
+      var menu = btn.parentElement.querySelector('.action-menu-popup');
+      if (menu) menu.style.display = 'flex';
+    });
+  });
+  document.addEventListener('click', function(e) {
+    closeAllActionMenus();
+  });
+  document.querySelectorAll('.action-menu-popup').forEach(function(menu) {
+    menu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
 });
+
+// Action menu popup for assets table
+function closeAllActionMenus() {
+  document.querySelectorAll('.action-menu-popup').forEach(function(menu) {
+    menu.style.display = 'none';
+  });
+}

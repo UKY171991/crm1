@@ -288,6 +288,7 @@ body {
 }
 .assets-table td {
   vertical-align: middle;
+  position: relative;
 }
 .assets-table tbody tr:nth-child(even) {
   background: #f9fafb;
@@ -363,6 +364,49 @@ body {
   border-radius: 5px;
   transition: background 0.13s;
   margin-left: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.action-btn svg {
+  display: block;
+}
+.action-btn:focus {
+  outline: 2px solid #a78bfa;
+}
+.action-btn.more-btn {
+  margin-left: 8px;
+}
+.action-menu-popup {
+  position: absolute;
+  right: 0;
+  top: 36px;
+  min-width: 120px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(24,28,42,0.13);
+  border: 1px solid #ede9fe;
+  z-index: 10;
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.action-menu-item {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 18px;
+  font-size: 1em;
+  color: #23263a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.13s, color 0.13s;
+}
+.action-menu-item:hover {
+  background: #ede9fe;
+  color: #6d28d9;
 }
 .action-btn:hover {
   background: #f3f0fa;

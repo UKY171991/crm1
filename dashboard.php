@@ -36,11 +36,17 @@
   <div class="dashboard-charts">
     <div class="chart-card">
       <div class="chart-title">Asset Utilization</div>
-      <img src="bar-placeholder.png" alt="Bar Chart" style="width:100%;height:180px;background:#f3f0fa;border-radius:8px;" />
+      <canvas id="assetUtilizationChart" height="180"></canvas>
     </div>
     <div class="chart-card">
       <div class="chart-title">Downtime Trends</div>
-      <img src="line-placeholder.png" alt="Line Chart" style="width:100%;height:180px;background:#f3f0fa;border-radius:8px;" />
+      <canvas id="downtimeTrendsChart" height="180"></canvas>
+    </div>
+  </div>
+  <div class="dashboard-charts">
+    <div class="chart-card" style="max-width: 480px;">
+      <div class="chart-title">Fuel Usage Distribution</div>
+      <canvas id="fuelUsageChart" height="220"></canvas>
     </div>
   </div>
 </div>

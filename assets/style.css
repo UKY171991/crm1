@@ -302,6 +302,8 @@ body {
   vertical-align: middle;
   position: relative;
   height: 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .assets-table tbody tr:nth-child(even) {
   background: #f9fafb;
@@ -370,26 +372,26 @@ body {
   background: #e5e7eb;
 }
 .action-btn {
-  background: none;
-  border: none;
-  padding: 6px 8px;
-  margin: 0 2px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 0;
+  margin: 0 4px;
   border-radius: 50%;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, box-shadow 0.15s;
+  transition: box-shadow 0.15s, border 0.15s, background 0.15s;
   box-shadow: none;
-  min-width: 36px;
-  min-height: 36px;
-  height: 36px;
-  width: 36px;
+  min-width: 32px;
+  min-height: 32px;
+  width: 32px;
+  height: 32px;
 }
 .action-btn svg {
-  width: 20px;
-  height: 20px;
-  stroke: #a78bfa;
+  width: 18px;
+  height: 18px;
+  stroke: #6b7280;
   display: block;
 }
 .action-btn:focus {
@@ -397,26 +399,21 @@ body {
   outline-offset: 2px;
 }
 .action-btn:hover, .action-btn:focus {
-  background: #ede9fe;
+  background: #f3f4f6;
+  border: 1px solid #a78bfa;
   box-shadow: 0 2px 8px rgba(167,139,250,0.10);
 }
 .action-btn.more-btn {
   margin-left: 8px;
 }
 .action-menu-popup {
-  position: absolute;
+  min-width: 130px;
   right: 0;
   top: 40px;
-  min-width: 130px;
-  background: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(24,28,42,0.13);
-  border: 1px solid #ede9fe;
-  z-index: 10;
-  padding: 6px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
 }
 .action-menu-item {
   background: none;

@@ -174,6 +174,29 @@ window.addEventListener('DOMContentLoaded', function() {
     </tr>`;
   }
 
+  // --- Dynamic Audit Trail Popup ---
+  function renderAuditRow(audit) {
+    let badge = '<span class="badge badge-active">Created</span>';
+    if (audit.action === 'Updated') badge = '<span class="badge badge-maintenance">Updated</span>';
+    return `<tr>
+      <td>${audit.timestamp}</td>
+      <td>${badge}</td>
+      <td>${audit.user}</td>
+      <td>${audit.details}</td>
+    </tr>`;
+  }
+
+  function showAuditModal(asset) {
+    // Fetch audit data via AJAX (simulate for now)
+    fetch('include/ajax_audit_asset.php?asset_id=' + encodeURIComponent(asset.asset_id))
+      .then(res => res.json())
+      .then(audits => {
+        document.getElementById('auditModalTitle').textContent = 'Audit Trail - ' + asset.asset_name;
+        document.getElementById('auditModalBody').innerHTML = audits.map(renderAuditRow).join('');
+        document.getElementById('auditModal').style.display = 'flex';
+      });
+  }
+
   function rebindAssetTableEvents() {
     // History modal
     var modal = document.getElementById('auditModal');
@@ -182,7 +205,9 @@ window.addEventListener('DOMContentLoaded', function() {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        if (modal) modal.style.display = 'flex';
+        var tr = btn.closest('tr');
+        var asset = JSON.parse(tr.getAttribute('data-asset').replace(/&#39;/g, "'"));
+        showAuditModal(asset);
       });
     });
     if (closeBtn) closeBtn.addEventListener('click', function() {

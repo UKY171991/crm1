@@ -1289,6 +1289,96 @@ body {
   background: #fee2e2;
   color: #dc2626;
 }
+.dashboard-maint-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  margin-top: 28px;
+  padding: 0 0 24px 0;
+  max-width: 700px;
+}
+.dashboard-maint-title {
+  font-size: 1.18em;
+  font-weight: 700;
+  padding: 24px 32px 0 32px;
+  color: #181c2a;
+}
+.dashboard-maint-table-wrap {
+  padding: 0 24px;
+  overflow-x: auto;
+}
+.dashboard-maint-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 12px;
+  font-size: 1em;
+  background: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(160, 120, 250, 0.06);
+  border: 1px solid #ede9fe;
+  overflow: hidden;
+}
+.dashboard-maint-table th, .dashboard-maint-table td {
+  padding: 14px 12px;
+  text-align: left;
+  background: none;
+}
+.dashboard-maint-table th {
+  color: #888;
+  font-weight: 600;
+  font-size: 0.98em;
+  border-bottom: 2px solid #ede9fe;
+  background: linear-gradient(90deg, #f3f0fa 80%, #ede9fe 100%);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.dashboard-maint-table td {
+  font-size: 1.04em;
+  color: #23263a;
+  border-bottom: 1px solid #f3f0fa;
+  vertical-align: middle;
+}
+.dashboard-maint-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.dashboard-maint-table tbody tr {
+  border-radius: 10px;
+  transition: box-shadow 0.13s, background 0.13s;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(160, 120, 250, 0.03);
+}
+.dashboard-maint-table tbody tr:hover {
+  background: #f3f0fa;
+  box-shadow: 0 4px 16px rgba(160, 120, 250, 0.10);
+}
+.dashboard-maint-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+.maint-id {
+  color: #888;
+  font-size: 0.93em;
+  font-weight: 400;
+}
+.priority {
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 3px 14px 3px 10px;
+  font-size: 0.98em;
+  display: inline-block;
+}
+.priority.low {
+  background: #d1fae5;
+  color: #059669;
+}
+.priority.medium {
+  background: #fef9c3;
+  color: #b45309;
+}
+.priority.high {
+  background: #fee2e2;
+  color: #dc2626;
+}
 @media (max-width: 900px) {
   .sidebar {
     width: 64px;

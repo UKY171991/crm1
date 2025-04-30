@@ -102,6 +102,7 @@ window.addEventListener('DOMContentLoaded', function() {
   var addAssetModal = document.getElementById('addAssetModal');
   var openAddAssetBtn = document.getElementById('openAddAssetModal');
   var closeAddAssetBtn = document.getElementById('closeAddAssetModal');
+  var addAssetForm = document.querySelector('.add-asset-form');
   if (openAddAssetBtn && addAssetModal) {
     openAddAssetBtn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -117,6 +118,48 @@ window.addEventListener('DOMContentLoaded', function() {
     addAssetModal.addEventListener('click', function(e) {
       if (e.target === addAssetModal) addAssetModal.style.display = 'none';
     });
+  }
+  if (addAssetForm) {
+    addAssetForm.onsubmit = function(e) {
+      e.preventDefault();
+      var formData = new FormData(addAssetForm);
+      var btn = addAssetForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Adding...';
+      // Map form fields to match DB columns
+      var data = {
+        asset_name: formData.get('asset_name') || addAssetForm[0].value,
+        asset_id: formData.get('asset_id') || addAssetForm[1].value,
+        type: formData.get('type') || addAssetForm[2].value,
+        location: formData.get('location') || addAssetForm[3].value,
+        status: formData.get('status') || addAssetForm[4].value,
+        operator: formData.get('operator') || addAssetForm[5].value,
+        utilization: formData.get('utilization') || addAssetForm[6].value
+      };
+      fetch('include/ajax_add_asset.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data)
+      })
+      .then(res => res.json())
+      .then(data => {
+        btn.disabled = false;
+        btn.textContent = 'Add Asset';
+        if (data.success) {
+          addAssetModal.style.display = 'none';
+          addAssetForm.reset();
+          loadAssets();
+          alert('Asset added successfully!');
+        } else {
+          alert('Failed to add asset.');
+        }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = 'Add Asset';
+        alert('Failed to add asset.');
+      });
+    };
   }
 
   // Action menu logic

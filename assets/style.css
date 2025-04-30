@@ -252,18 +252,21 @@ body {
   background: #ede9fe;
 }
 .assets-add-btn {
-  background: #a78bfa;
+  background: linear-gradient(90deg, #a78bfa 60%, #6d28d9 100%);
   color: #fff;
   border: none;
-  border-radius: 6px;
-  padding: 8px 18px;
-  font-weight: 600;
-  font-size: 1em;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 1.08em;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: 0 2px 8px rgba(160, 120, 250, 0.10);
+  transition: background 0.18s, box-shadow 0.18s, transform 0.13s;
 }
 .assets-add-btn:hover {
-  background: #6d28d9;
+  background: linear-gradient(90deg, #6d28d9 60%, #a78bfa 100%);
+  box-shadow: 0 4px 16px rgba(160, 120, 250, 0.18);
+  transform: translateY(-2px) scale(1.03);
 }
 .assets-table-wrap {
   padding: 0 24px;
@@ -495,19 +498,23 @@ body {
   color: #181c2a;
 }
 .modal-close {
+  font-size: 2em;
+  color: #a78bfa;
   background: none;
   border: none;
-  font-size: 2em;
-  color: #888;
   cursor: pointer;
-  line-height: 1;
-  padding: 0 4px;
-  border-radius: 4px;
-  transition: background 0.13s;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
 }
 .modal-close:hover {
-  background: #f3f0fa;
+  background: #ede9fe;
   color: #6d28d9;
+  box-shadow: 0 2px 8px rgba(160, 120, 250, 0.10);
 }
 .modal-subtitle {
   color: #888;
@@ -550,6 +557,28 @@ body {
 }
 .modal-table tbody tr:nth-child(even) {
   background: #f9fafb;
+}
+.add-asset-form, .edit-asset-form {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 24px 32px 12px 32px;
+  box-shadow: 0 2px 12px rgba(160, 120, 250, 0.06);
+  margin: 18px 0 0 0;
+}
+.add-asset-form .form-group, .edit-asset-form .form-group {
+  margin-bottom: 18px;
+}
+.add-asset-form .form-input:focus, .edit-asset-form .form-input:focus {
+  border: 1.5px solid #a78bfa;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 2px #ede9fe;
+  transition: border 0.18s, box-shadow 0.18s;
+}
+.add-asset-form label, .edit-asset-form label {
+  font-weight: 600;
+  color: #6d28d9;
+  margin-bottom: 6px;
 }
 .operators-card {
   background: #fff;
@@ -1576,6 +1605,9 @@ body {
     padding: 10px 6px;
     font-size: 0.98em;
   }
+  .add-asset-form, .edit-asset-form {
+    padding: 12px 8px 8px 8px;
+  }
 }
 @media (max-width: 600px) {
   .sidebar {
@@ -1747,5 +1779,8 @@ body {
   .settings-table th, .settings-table td {
     padding: 8px 3px;
     font-size: 0.97em;
+  }
+  .add-asset-form, .edit-asset-form {
+    padding: 12px 8px 8px 8px;
   }
 }

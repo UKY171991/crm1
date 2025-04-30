@@ -137,6 +137,47 @@ window.addEventListener('DOMContentLoaded', function() {
       e.stopPropagation();
     });
   });
+
+  // Load assets via AJAX
+  function renderStatusBadge(status) {
+    if (status === 'Active') return '<span class="badge badge-active">● Active</span>';
+    if (status === 'Idle') return '<span class="badge badge-idle">● Idle</span>';
+    if (status === 'Maintenance') return '<span class="badge badge-maintenance">● Maintenance</span>';
+    return status;
+  }
+  function renderUtilBar(util) {
+    let color = 'gray';
+    if (util >= 80) color = 'green';
+    else if (util >= 50) color = 'red';
+    return `<div class="util-bar ${color}"><div style="width:${util}%"></div></div> ${util}%`;
+  }
+  function renderAssetRow(asset) {
+    return `<tr>
+      <td><span class="asset-chip">${asset.asset_id}</span> <div class="asset-main">${asset.asset_name} <div class="asset-id">${asset.asset_id}</div></div></td>
+      <td>${asset.type}</td>
+      <td>${asset.location}</td>
+      <td>${renderStatusBadge(asset.status)}</td>
+      <td>${asset.operator || 'Unassigned'}</td>
+      <td>${renderUtilBar(asset.utilization || 0)}</td>
+      <td>
+        <button class="action-btn" title="History">...</button>
+        <button class="action-btn more-btn" title="More">...</button>
+        <div class="action-menu-popup" style="display:none;">
+          <button class="action-menu-item">Edit</button>
+          <button class="action-menu-item">Delete</button>
+        </div>
+      </td>
+    </tr>`;
+  }
+  function loadAssets() {
+    fetch('include/ajax_assets.php')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.getElementById('assets-tbody');
+        tbody.innerHTML = data.map(renderAssetRow).join('');
+      });
+  }
+  loadAssets();
 });
 
 // Action menu popup for assets table

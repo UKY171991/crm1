@@ -405,6 +405,35 @@ body {
 }
 .action-btn.more-btn {
   margin-left: 8px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: box-shadow 0.15s, border 0.15s, background 0.15s;
+  box-shadow: none;
+}
+
+.action-btn.more-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: #6b7280;
+  display: block;
+}
+
+.action-btn.more-btn:hover,
+.action-btn.more-btn:focus {
+  background: #f3f4f6;
+  border: 1px solid #a78bfa;
+  box-shadow: 0 2px 8px rgba(167,139,250,0.10);
+  outline: none;
 }
 .action-menu-popup {
   min-width: 130px;
@@ -1081,7 +1110,6 @@ body {
 .alerts-table-wrap {
   padding: 0 24px;
   overflow-x: auto;
-  position: relative;
 }
 .alerts-table {
   width: 100%;

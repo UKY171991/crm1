@@ -1,3 +1,4 @@
+<?php include 'inc/config.php'; ?>
 <?php include 'inc/sidebar.php'; ?>
 <?php include 'inc/topbar.php'; ?>
 <div class="main-content">

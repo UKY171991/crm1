@@ -127,6 +127,48 @@
     </form>
   </div>
 </div>
+<div id="editAssetModal" class="modal-overlay" style="display:none;">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Edit Asset</div>
+      <button class="modal-close" id="closeEditAssetModal" title="Close">&times;</button>
+    </div>
+    <form class="edit-asset-form">
+      <input type="hidden" name="asset_id" id="edit-asset-id" />
+      <div class="form-group">
+        <label>Asset Name</label>
+        <input type="text" class="form-input" name="asset_name" id="edit-asset-name" required />
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <input type="text" class="form-input" name="type" id="edit-asset-type" required />
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" class="form-input" name="location" id="edit-asset-location" required />
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select class="form-input" name="status" id="edit-asset-status">
+          <option value="Active">Active</option>
+          <option value="Idle">Idle</option>
+          <option value="Maintenance">Maintenance</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Operator</label>
+        <input type="text" class="form-input" name="operator" id="edit-asset-operator" />
+      </div>
+      <div class="form-group">
+        <label>Utilization (%)</label>
+        <input type="number" class="form-input" name="utilization" id="edit-asset-utilization" min="0" max="100" />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="assets-add-btn">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
 <?php include 'inc/footer.php'; ?>
 </body>
 </html>

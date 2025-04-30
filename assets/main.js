@@ -152,7 +152,7 @@ window.addEventListener('DOMContentLoaded', function() {
     return `<div class="util-bar ${color}"><div style="width:${util}%"></div></div> ${util}%`;
   }
   function renderAssetRow(asset) {
-    return `<tr>
+    return `<tr data-asset='${JSON.stringify(asset).replace(/'/g, "&#39;")}' data-id='${asset.asset_id}'>
       <td><span class="asset-chip">${asset.asset_id}</span> <div class="asset-main">${asset.asset_name} <div class="asset-id">${asset.asset_id}</div></div></td>
       <td>${asset.type}</td>
       <td>${asset.location}</td>
@@ -167,8 +167,8 @@ window.addEventListener('DOMContentLoaded', function() {
           <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="5" r="1.2"/><circle cx="10" cy="10" r="1.2"/><circle cx="10" cy="15" r="1.2"/></svg>
         </button>
         <div class="action-menu-popup" style="display:none;">
-          <button class="action-menu-item">Edit</button>
-          <button class="action-menu-item">Delete</button>
+          <button class="action-menu-item edit-btn">Edit</button>
+          <button class="action-menu-item delete-btn">Delete</button>
         </div>
       </td>
     </tr>`;
@@ -209,6 +209,72 @@ window.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation();
       });
     });
+    // Edit button logic
+    document.querySelectorAll('.edit-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var tr = btn.closest('tr');
+        var asset = JSON.parse(tr.getAttribute('data-asset').replace(/&#39;/g, "'"));
+        document.getElementById('edit-asset-id').value = asset.asset_id;
+        document.getElementById('edit-asset-name').value = asset.asset_name;
+        document.getElementById('edit-asset-type').value = asset.type;
+        document.getElementById('edit-asset-location').value = asset.location;
+        document.getElementById('edit-asset-status').value = asset.status;
+        document.getElementById('edit-asset-operator').value = asset.operator;
+        document.getElementById('edit-asset-utilization').value = asset.utilization;
+        document.getElementById('editAssetModal').style.display = 'flex';
+      });
+    });
+    // Delete button logic
+    document.querySelectorAll('.delete-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (confirm('Are you sure you want to delete this asset?')) {
+          var tr = btn.closest('tr');
+          var asset = JSON.parse(tr.getAttribute('data-asset').replace(/&#39;/g, "'"));
+          fetch('include/ajax_delete_asset.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'asset_id=' + encodeURIComponent(asset.asset_id)
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) loadAssets();
+            else alert('Delete failed');
+          });
+        }
+      });
+    });
+    // Edit modal close
+    var closeEditBtn = document.getElementById('closeEditAssetModal');
+    var editModal = document.getElementById('editAssetModal');
+    if (closeEditBtn && editModal) {
+      closeEditBtn.onclick = function() { editModal.style.display = 'none'; };
+      editModal.onclick = function(e) { if (e.target === editModal) editModal.style.display = 'none'; };
+    }
+    // Edit form submit
+    var editForm = document.querySelector('.edit-asset-form');
+    if (editForm) {
+      editForm.onsubmit = function(e) {
+        e.preventDefault();
+        var formData = new FormData(editForm);
+        fetch('include/ajax_update_asset.php', {
+          method: 'POST',
+          body: new URLSearchParams(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            editModal.style.display = 'none';
+            loadAssets();
+          } else {
+            alert('Update failed');
+          }
+        });
+      };
+    }
   }
 
   function loadAssets() {

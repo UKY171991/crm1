@@ -322,8 +322,15 @@ window.addEventListener('DOMContentLoaded', function() {
           })
           .then(res => res.json())
           .then(data => {
-            if (data.success) loadAssets();
-            else alert('Delete failed');
+            if (data.success) {
+              loadAssets();
+              showToast('Asset deleted successfully!', 'success');
+            } else {
+              showToast('Delete failed', 'error');
+            }
+          })
+          .catch(() => {
+            showToast('Delete failed', 'error');
           });
         }
       });

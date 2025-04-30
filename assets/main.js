@@ -160,8 +160,12 @@ window.addEventListener('DOMContentLoaded', function() {
       <td>${asset.operator || 'Unassigned'}</td>
       <td>${renderUtilBar(asset.utilization || 0)}</td>
       <td>
-        <button class="action-btn" title="History">...</button>
-        <button class="action-btn more-btn" title="More">...</button>
+        <button class="action-btn history-btn" title="History">
+          <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-7.7"/><polyline points="3 8 3 12 7 12"/></svg>
+        </button>
+        <button class="action-btn more-btn" title="More">
+          <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="5" r="1.2"/><circle cx="10" cy="10" r="1.2"/><circle cx="10" cy="15" r="1.2"/></svg>
+        </button>
         <div class="action-menu-popup" style="display:none;">
           <button class="action-menu-item">Edit</button>
           <button class="action-menu-item">Delete</button>
@@ -169,12 +173,51 @@ window.addEventListener('DOMContentLoaded', function() {
       </td>
     </tr>`;
   }
+
+  function rebindAssetTableEvents() {
+    // History modal
+    var modal = document.getElementById('auditModal');
+    var closeBtn = document.getElementById('closeAuditModal');
+    document.querySelectorAll('.history-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (modal) modal.style.display = 'flex';
+      });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+    if (modal) modal.addEventListener('click', function(e) {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+    // Action menu
+    document.querySelectorAll('.more-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeAllActionMenus();
+        var menu = btn.parentElement.querySelector('.action-menu-popup');
+        if (menu) menu.style.display = 'flex';
+      });
+    });
+    document.addEventListener('click', function(e) {
+      closeAllActionMenus();
+    });
+    document.querySelectorAll('.action-menu-popup').forEach(function(menu) {
+      menu.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });
+  }
+
   function loadAssets() {
     fetch('include/ajax_assets.php')
       .then(res => res.json())
       .then(data => {
         const tbody = document.getElementById('assets-tbody');
         tbody.innerHTML = data.map(renderAssetRow).join('');
+        rebindAssetTableEvents();
       });
   }
   loadAssets();

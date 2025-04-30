@@ -79,6 +79,19 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Toast notification
+  function showToast(msg, type = 'success') {
+    let toast = document.createElement('div');
+    toast.className = 'toast ' + type;
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.classList.add('show'); }, 10);
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 400);
+    }, 2500);
+  }
+
   // Modal logic for audit trail
   var modal = document.getElementById('auditModal');
   var closeBtn = document.getElementById('closeAuditModal');
@@ -149,15 +162,15 @@ window.addEventListener('DOMContentLoaded', function() {
           addAssetModal.style.display = 'none';
           addAssetForm.reset();
           loadAssets();
-          alert('Asset added successfully!');
+          showToast('Asset added successfully!', 'success');
         } else {
-          alert('Failed to add asset.');
+          showToast('Failed to add asset.', 'error');
         }
       })
       .catch(() => {
         btn.disabled = false;
         btn.textContent = 'Add Asset';
-        alert('Failed to add asset.');
+        showToast('Failed to add asset.', 'error');
       });
     };
   }
@@ -337,8 +350,9 @@ window.addEventListener('DOMContentLoaded', function() {
           if (data.success) {
             editModal.style.display = 'none';
             loadAssets();
+            showToast('Asset updated successfully!', 'success');
           } else {
-            alert('Update failed');
+            showToast('Update failed', 'error');
           }
         });
       };
